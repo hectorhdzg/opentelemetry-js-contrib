@@ -67,6 +67,8 @@ components:
     - seemk
   plugins/node/opentelemetry-instrumentation-connect: []
     # Unmaintained?
+  plugins/node/opentelemetry-instrumentation-console: []
+    - hectorhdzg
   plugins/node/opentelemetry-instrumentation-dns: []
     # Unmaintained?
   plugins/node/opentelemetry-instrumentation-express:
