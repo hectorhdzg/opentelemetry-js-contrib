@@ -7,11 +7,22 @@ on:
       - edited
       - synchronize
 
+permissions: read-all
+
 jobs:
-  main:
-    name: Validate PR title
+  add-owner-approved-label:
+    if: github.event.review.state == 'approved'
     runs-on: ubuntu-latest
     steps:
-      - uses: amannn/action-semantic-pull-request@v5
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run update permissions
+        run: chmod +x ./.github/workflows/scripts/add-labels-to-reviewed-pr.sh
+
+      - name: Run add-labels-to-reviewed-pr.sh
+        run: ./.github/workflows/scripts/add-labels-to-reviewed-pr.sh
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          PR: ${{ github.event.number }}
