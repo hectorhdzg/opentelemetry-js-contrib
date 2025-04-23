@@ -16,7 +16,7 @@ permissions: read-all
 
 jobs:
   add-owner-approved-label:
-    if: github.event.review.state == 'approved'
+    # if: github.event.review.state == 'approved'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
